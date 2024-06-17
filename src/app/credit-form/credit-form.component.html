@@ -51,7 +51,10 @@
                     </tbody>
                 </table>
 
-                <button type="button" class="btn btn-secondary" (click)="onclicking(students)">Submit For FA Approval</button>
+                <button type="button" class="btn btn-secondary" (click)="onclicking(students)" >Submit For FA Approval</button>
+                <div *ngIf="formErrors.length > 0" class="text-danger mt-2">
+                    <div *ngFor="let error of formErrors">{{error}}</div>
+                    </div>
             </div>
             </form>
         </div>

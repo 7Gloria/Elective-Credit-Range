@@ -29,6 +29,8 @@ export class CreditFormComponent {
   maxCredits: number[] = [];
  valid = false;
  req = 20;
+ formErrors: string[] = [];  // To store error messages
+
   constructor() {
     this.students.forEach(student => {
       student.electiveCredits.forEach(elective => {
@@ -40,6 +42,7 @@ export class CreditFormComponent {
 
   addMinCredit(minCredit: number, index: number) {
     this.minCredits[index] = minCredit;
+    this.onclicking(this.students);
   }
 
   get totalMinCredits() {
@@ -48,6 +51,7 @@ export class CreditFormComponent {
 
   addMaxCredit(maxCredit: number, index: number) {
     this.maxCredits[index] = maxCredit;
+    this.onclicking(this.students);
   }
 
   saveToFile(data: any, filename: string) {
@@ -83,13 +87,34 @@ export class CreditFormComponent {
 
   onclicking(studentInfo: StudentInfo[]): void {
     this.valid = false;
+    this.formErrors = [];  // Clear previous errors
+
     console.log(this.minCredits);
     
     for (let i = 0; i < this.basket.length; i++) {
+      if (this.minCredits[i] === null && this.maxCredits[i] === null) {
+        console.log('Please enter values for all Min and Max credits.');
+        this.formErrors.push(`Please enter values for all Min and Max credits.`);
+      }
+      else if (this.minCredits[i] > this.maxCredits[i]) {
+        console.log(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
+        this.formErrors.push(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
+      }
+      else if (this.minCredits[i] > 6 && this.maxCredits[i] > 6) {
+        console.log(`Credits for ${this.basket[i]} cannot exceed 6.`);
+        this.formErrors.push(`Credits for ${this.basket[i]} cannot exceed 6.`);
+      }
+
+
       if (this.minCredits[i] < this.maxCredits[i] && this.minCredits[i]!==null && this.maxCredits[i] <= 6 && this.maxCredits[i]!==null && this.minCredits[i] <= 6) {
         this.valid = true;
         // console.log('Form is valid');
-        break;
+      }
+
+      if (this.formErrors.length > 0) {
+        this.valid = false;
+      } else {
+        this.valid = true;
       }
     }
     if (this.valid) {
@@ -100,6 +125,7 @@ export class CreditFormComponent {
           this.isBool = true;
         } else {
           this.isBool = false;
+          this.formErrors.push(`Total credits must be at least ${this.req}.`);
           console.log('You need to select more credits');
         }
       });
