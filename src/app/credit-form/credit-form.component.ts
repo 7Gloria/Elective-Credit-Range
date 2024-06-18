@@ -23,7 +23,7 @@ export class CreditFormComponent {
   item: any;
   students: StudentInfo[] = studentInfo;
   isBool = false;
-  selectedTab: string = ' ';
+  selectedTab: string = 'DeclareElectives';
   
   minCredits: number[] = [];
   maxCredits: number[] = [];
@@ -118,17 +118,21 @@ export class CreditFormComponent {
       }
     }
     if (this.valid) {
+      let totalValid = false;
       studentInfo.forEach(student => {
         const total = student.totalCredits + this.totalMinCredits;
        
         if (total >= this.req) {
           this.isBool = true;
-        } else {
+          totalValid = true;
+        }
+      });
+        if(!totalValid) {
           this.isBool = false;
           this.formErrors.push(`Total credits must be at least ${this.req}.`);
           console.log('You need to select more credits');
         }
-      });
+   
     } else {
       this.isBool = false;
     }

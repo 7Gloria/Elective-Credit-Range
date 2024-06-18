@@ -30,6 +30,7 @@
             <div *ngIf="selectedTab === 'DeclareElectives'" class="justify-content-center"> <!-- Add this condition -->
                 <form (ngSubmit)="onsubmit()">
             <div class="card-body">
+               
                 <table class="table table-striped border">
                     <thead>
                         <tr class="text-center align-middle">
@@ -43,15 +44,15 @@
                         @for (item of basket; track $index; ) {
                             <tr class="text-center align-middle">
                                 <td>{{item}}</td>
-                                <td><input type="number" #minCredit (change)="addMinCredit(+minCredit.value, $index)" style="border:2cap;" placeholder="0" required> </td>
-                                <td><input type="number" #maxCredit  (change)="addMaxCredit(+maxCredit.value, $index)" style="border:2cap;" placeholder="0" required> </td>
+                                <td><input type="number" #minCredit (change)="addMinCredit(+minCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
+                                <td><input type="number" #maxCredit  (change)="addMaxCredit(+maxCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
                             </tr>
                         }
 
                     </tbody>
                 </table>
 
-                <button type="button" class="btn btn-secondary" (click)="onclicking(students)" >Submit For FA Approval</button>
+                <button type="button" class="btn btn-primary" (click)="onclicking(students)">Submit For FA Approval</button>
                 <div *ngIf="formErrors.length > 0" class="text-danger mt-2">
                     <div *ngFor="let error of formErrors">{{error}}</div>
                     </div>
