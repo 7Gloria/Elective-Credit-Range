@@ -1,13 +1,11 @@
 import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, QueryList, ViewChildren } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { NgbHighlight, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from '../app.component';
 import { StudentInfo } from '../model/interface';
 import { studentInfo } from '../model/studentdetails';
-
-
 
 @Component({
   selector: 'app-credit-form',
@@ -31,6 +29,10 @@ export class CreditFormComponent {
  req = 20;
  formErrors: string[] = [];  // To store error messages
 
+
+ @ViewChildren('minCredit, maxCredit')
+  inputs!: QueryList<ElementRef>;
+ 
   constructor() {
     this.students.forEach(student => {
       student.electiveCredits.forEach(elective => {
@@ -139,5 +141,17 @@ export class CreditFormComponent {
 
   selectTab(tab: string) {
     this.selectedTab = tab;
+  }
+
+  onKeydown(event: KeyboardEvent, index: number, type: 'min' | 'max') {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const inputsArray = this.inputs.toArray();
+      const currentIndex = index * 2 + (type === 'max' ? 1 : 0);
+      const nextInput = inputsArray[currentIndex + 1];
+      if (nextInput) {
+        nextInput.nativeElement.focus();
+      }
+    }
   }
 }
