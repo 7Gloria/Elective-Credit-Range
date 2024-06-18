@@ -44,19 +44,15 @@
                         @for (item of basket; track $index; ) {
                             <tr class="text-center align-middle">
                                 <td>{{item}}</td>
-                                <td><input type="number" #minCredit (change)="addMinCredit(+minCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
-                                <td><input type="number" #maxCredit  (change)="addMaxCredit(+maxCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
+                                <td><input type="number" #minCredit (keydown)="onKeydown($event, $index, 'min')" (change)="addMinCredit(+minCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
+                                <td><input type="number" #maxCredit (keydown)="onKeydown($event, $index, 'max')" (change)="addMaxCredit(+maxCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
                             </tr>
                         }
 
                     </tbody>
                 </table>
 
-<<<<<<< HEAD
                 <button type="button" class="btn btn-primary" (click)="onclicking(students)">Submit For FA Approval</button>
-=======
-                <button type="button" class="btn btn-primary" (click)="onclicking(students)" >Submit For FA Approval</button>
->>>>>>> f8ae3d2debed39766433bcebba38d58ffbc21d49
                 <div *ngIf="formErrors.length > 0" class="text-danger mt-2">
                     <div *ngFor="let error of formErrors">{{error}}</div>
                     </div>
