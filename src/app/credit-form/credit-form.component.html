@@ -43,8 +43,8 @@
                         @for (item of basket; track $index; ) {
                             <tr class="text-center align-middle">
                                 <td>{{item}}</td>
-                                <td><input type="number" #minCredit (change)="addMinCredit(+minCredit.value, $index)" style="border:2cap;" placeholder="0" required> </td>
-                                <td><input type="number" #maxCredit  (change)="addMaxCredit(+maxCredit.value, $index)" style="border:2cap;" placeholder="0" required> </td>
+                                <td><input type="number" #minCredit (change)="addMinCredit(+minCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
+                                <td><input type="number" #maxCredit  (change)="addMaxCredit(+maxCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
                             </tr>
                         }
 
