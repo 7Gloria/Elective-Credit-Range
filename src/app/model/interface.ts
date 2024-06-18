@@ -10,8 +10,14 @@ export interface StudentInfo {
     program: string;
     branch: string;
     semester: number;
+    creditRange: Range;
     cgpa: number;
     atRisk: boolean;
     totalCredits: number;
     electiveCredits: ElectiveCredits[];
+  }
+
+  export interface Range {
+    max: number;
+    min: number;
   }

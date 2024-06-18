@@ -26,13 +26,16 @@ export class CreditFormComponent {
   minCredits: number[] = [];
   maxCredits: number[] = [];
  valid = false;
- req = 20;
- formErrors: string[] = [];  // To store error messages
-
+ req = 30;
+ formErrors: string[] = [];
+ limit = 24;
+// CredRange = this.students[0].creditRange;
 
  @ViewChildren('minCredit, maxCredit')
   inputs!: QueryList<ElementRef>;
+  sum: number[] | undefined;
  
+  
   constructor() {
     this.students.forEach(student => {
       student.electiveCredits.forEach(elective => {
@@ -89,26 +92,34 @@ export class CreditFormComponent {
 
   onclicking(studentInfo: StudentInfo[]): void {
     this.valid = false;
-    this.formErrors = [];  // Clear previous errors
+    this.formErrors = [];
 
     console.log(this.minCredits);
     
     for (let i = 0; i < this.basket.length; i++) {
+    //  var  sum = this.maxCredits.reduce((a, b) => a + b, 0);
       if (this.minCredits[i] === null && this.maxCredits[i] === null) {
         console.log('Please enter values for all Min and Max credits.');
         this.formErrors.push(`Please enter values for all Min and Max credits.`);
       }
-      else if (this.minCredits[i] > this.maxCredits[i]) {
-        console.log(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
-        this.formErrors.push(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
-      }
-      else if (this.minCredits[i] > 6 || this.maxCredits[i] > 6) {
-        console.log(`Credits for ${this.basket[i]} cannot exceed 6.`);
-        this.formErrors.push(`Credits for ${this.basket[i]} cannot exceed 6.`);
+      // else if (this.minCredits[i] > this.maxCredits[i]) {
+      //   console.log(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
+      //   this.formErrors.push(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
+      // }
+      else if (this.minCredits[i] > this.limit || this.maxCredits[i] > this.limit) {
+        console.log(`Credits for ${this.basket[i]} cannot exceed limit.`);
+        this.formErrors.push(`Credits for ${this.basket[i]} cannot exceed limit.`);
       }
 
+      // else if (this.maxCredits.some(credit => credit > sum)){
+      //   console.log(`Total credits cannot exceed limit.`);
+      //   this.formErrors.push(`Total credits cannot exceed limit.`);
+      // }
 
-      if ((this.minCredits[i] <= this.maxCredits[i]) &&  (this.maxCredits[i] <= 6 && this.maxCredits[i]>0) && (this.minCredits[i] <= 6 && this.minCredits[i]>0)) {
+     
+
+
+      if ( (this.maxCredits[i] <= this.limit && this.maxCredits[i]>0) && (this.minCredits[i] <= this.limit && this.minCredits[i]>0)) {
         this.valid = true;
         // console.log('Form is valid');
       }

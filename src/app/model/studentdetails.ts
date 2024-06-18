@@ -1,4 +1,4 @@
-import { StudentInfo } from './interface';
+import { Range, StudentInfo } from './interface';
 
 export const studentInfo: StudentInfo[] = [
   {
@@ -7,6 +7,7 @@ export const studentInfo: StudentInfo[] = [
     program: 'Computer Science',
     branch: 'Software Engineering',
     semester: 3,
+    creditRange: { min: 0, max: 0 },
     cgpa: 3.5,
     atRisk: false,
     totalCredits: 18,
@@ -30,6 +31,7 @@ export const studentInfo: StudentInfo[] = [
     program: 'Computer Science',
     branch: 'Software Engineering',
     semester: 3,
+    creditRange: { min: 0, max: 0 },
     cgpa: 3.5,
     atRisk: false,
     totalCredits: 18,
@@ -47,3 +49,8 @@ export const studentInfo: StudentInfo[] = [
     ],
   },
 ];
+
+export const creditrange: Range = {
+  "max": 24,
+  "min": 9
+}
