@@ -31,28 +31,32 @@
                 <form (ngSubmit)="onsubmit()">
             <div class="card-body">
                
-                <table class="table table-striped border">
-                    <thead>
-                        <tr class="text-center align-middle">
-                            <th>Elective Courses</th>
-                            <th>Min Credits</th>
-                            <th>Max Credits</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @for (item of basket; track $index; ) {
+                <div class="table-responsive">
+                    <table class="table table-striped border">
+                        <thead>
                             <tr class="text-center align-middle">
-                                <td>{{item}}</td>
-                                <td><input type="number" #minCredit (keydown)="onKeydown($event, $index, 'min')" (change)="addMinCredit(+minCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
-                                <td><input type="number" #maxCredit (keydown)="onKeydown($event, $index, 'max')" (change)="addMaxCredit(+maxCredit.value, $index)" style="border:primary;" placeholder="0" required> </td>
+                                <th>Elective Courses</th>
+                                <th>Min Credits</th>
+                                <th>Max Credits</th>
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
+    
+                            @for (item of basket; track $index; ) {
+                                <tr class="text-center align-middle">
+                                    <td>{{item}}</td>
+                                    <td><input type="number" #minCredit (keydown)="onKeydown($event, $index, 'min')" (change)="addMinCredit(+minCredit.value, $index)" style="border:primary;" placeholder="0" required  min="0" oninput="this.value = Math.abs(this.value)" onkeydown="if(event.key==='.'){event.preventDefault();}" (click)="onclicking(students)"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"> </td>
+                                    <td><input type="number" #maxCredit (keydown)="onKeydown($event, $index, 'max')" (change)="addMaxCredit(+maxCredit.value, $index)" style="border:primary;" placeholder="0" required min="0" oninput="this.value = Math.abs(this.value)" onkeydown="if(event.key==='.'){event.preventDefault();}" (click)="onclicking(students)" oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"> </td>
+                                </tr>
+                            }
+    
+                        </tbody>
+                    </table>
+    
+                </div>
+                <!-- <button type="button" class="btn btn-primary">Submit For FA Approval</button> -->
 
-                    </tbody>
-                </table>
-
-                <button type="button" class="btn btn-primary" (click)="onclicking(students)">Submit For FA Approval</button>
+                <button class="btn btn-primary" style="margin-left: 1180px;" (click)="preview()">Preview &rarr;</button>
                 <div *ngIf="formErrors.length > 0" class="text-danger mt-2">
                     <div *ngFor="let error of formErrors">{{error}}</div>
                     </div>
