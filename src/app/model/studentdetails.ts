@@ -12,12 +12,12 @@ export const studentInfo: StudentInfo[] = [
     totalCredits: 18,
     electiveCredits: [
       {
-        basket: ['Elective 1', 'Elective 2'],
+        basket: [],
         minCredits: 0,
         maxCredits: 0,
       },
       {
-        basket: ['Elective 3', 'Elective 4'],
+        basket: [],
         minCredits: 0,
         maxCredits: 0,
       },
@@ -35,12 +35,12 @@ export const studentInfo: StudentInfo[] = [
     totalCredits: 18,
     electiveCredits: [
       {
-        basket: ['Elective 1', 'Elective 2'],
+        basket: [],
         minCredits: 0,
         maxCredits: 0,
       },
       {
-        basket: ['Elective 3', 'Elective 4'],
+        basket: [],
         minCredits: 0,
         maxCredits: 0,
       },

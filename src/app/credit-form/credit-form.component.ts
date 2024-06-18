@@ -102,13 +102,13 @@ export class CreditFormComponent {
         console.log(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
         this.formErrors.push(`Min credit cannot be greater than Max credit for ${this.basket[i]}.`);
       }
-      else if (this.minCredits[i] > 6 && this.maxCredits[i] > 6) {
+      else if (this.minCredits[i] > 6 || this.maxCredits[i] > 6) {
         console.log(`Credits for ${this.basket[i]} cannot exceed 6.`);
         this.formErrors.push(`Credits for ${this.basket[i]} cannot exceed 6.`);
       }
 
 
-      if (this.minCredits[i] < this.maxCredits[i] && this.minCredits[i]!==null && this.maxCredits[i] <= 6 && this.maxCredits[i]!==null && this.minCredits[i] <= 6) {
+      if ((this.minCredits[i] <= this.maxCredits[i]) &&  (this.maxCredits[i] <= 6 && this.maxCredits[i]>0) && (this.minCredits[i] <= 6 && this.minCredits[i]>0)) {
         this.valid = true;
         // console.log('Form is valid');
       }
