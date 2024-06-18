@@ -66,7 +66,7 @@ export class CreditFormComponent {
 
   addMaxCredit(maxCredit: number, index: number) {
     this.maxCredits[index] = maxCredit;
-    this.onclicking(this.students);
+    // this.onclicking(this.students);
   }
 
   saveToFile(data: any, filename: string) {
