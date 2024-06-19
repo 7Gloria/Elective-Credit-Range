@@ -98,6 +98,7 @@
       <div class="card-body">
         <table class="table">
           <thead>
+
             <tr>
               <th scope="col" class="text-center">Category</th>
               <th scope="col" class="text-center">Min Credits</th>
@@ -105,13 +106,14 @@
             </tr>
           </thead>
           <tbody>
-            <!-- @for (elective of plan.electivePlan; track $index) { -->
+            @for (elective of credits ; track $index) {
             <tr>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
-              <!-- } -->
+              <td class="text-center">{{elective.basket}}</td>
+              <td class="text-center">{{elective.minCredits}}</td>
+              <td class="text-center">{{elective.maxCredits}}</td>
+              
             </tr>
+          }
           </tbody>
         </table>
       </div>
