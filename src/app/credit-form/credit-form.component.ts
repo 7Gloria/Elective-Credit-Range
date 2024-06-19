@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-import { CommonModule } from '@angular/common';
-=======
 import { AsyncPipe, CommonModule, DecimalPipe } from '@angular/common';
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
 import {
   Component,
   ElementRef,
   Input,
-<<<<<<< HEAD
   OnInit,
-=======
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
   QueryList,
   ViewChildren,
 } from '@angular/core';
@@ -25,14 +18,12 @@ import { PreviewComponent } from '../preview/preview.component';
   selector: 'app-credit-form',
   standalone: true,
   imports: [
-<<<<<<< HEAD
     CommonModule,
     NgbNavModule,
     ReactiveFormsModule,
     RouterOutlet,
     RouterModule,
     PreviewComponent,
-=======
     AppComponent,
     RouterOutlet,
     CommonModule,
@@ -41,7 +32,6 @@ import { PreviewComponent } from '../preview/preview.component';
     AsyncPipe,
     ReactiveFormsModule,
     NgbHighlight,
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
   ],
   templateUrl: './credit-form.component.html',
   styleUrls: ['./credit-form.component.css'],
@@ -58,7 +48,6 @@ export class CreditFormComponent implements OnInit {
   minCredits: number[] = [];
   maxCredits: number[] = [];
   valid = false;
-<<<<<<< HEAD
   req = 30;
   formErrors: string[] = [];
   limit = 0;
@@ -70,7 +59,6 @@ export class CreditFormComponent implements OnInit {
   // router: any;
 
   constructor(private router: Router) {
-=======
   req = 20;
   formErrors: string[] = []; // To store error messages
 
@@ -78,7 +66,6 @@ export class CreditFormComponent implements OnInit {
   inputs!: QueryList<ElementRef>;
 
   constructor() {
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
     this.students.forEach((student) => {
       student.electiveCredits.forEach((elective) => {
         this.minCredits.push(elective.minCredits);
@@ -143,12 +130,8 @@ export class CreditFormComponent implements OnInit {
 
   onclicking(studentInfo: StudentInfo[]): void {
     this.valid = false;
-<<<<<<< HEAD
     this.formErrors = [];
-=======
     this.formErrors = []; // Clear previous errors
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
-
     console.log(this.minCredits);
 
     for (let i = 0; i < this.basket.length; i++) {
@@ -165,7 +148,6 @@ export class CreditFormComponent implements OnInit {
         this.formErrors.push(
           `Min credit cannot be greater than Max credit for ${this.basket[i]}.`
         );
-<<<<<<< HEAD
       }
 
       // else if (this.minCredits[i] > this.limit || this.maxCredits[i] > this.limit) {
@@ -183,7 +165,6 @@ export class CreditFormComponent implements OnInit {
         this.maxCredits[i] > 0 &&
         this.minCredits[i] <= this.limit &&
         this.minCredits[i] > 0
-=======
       } else if (this.minCredits[i] > 6 || this.maxCredits[i] > 6) {
         console.log(`Credits for ${this.basket[i]} cannot exceed 6.`);
         this.formErrors.push(`Credits for ${this.basket[i]} cannot exceed 6.`);
@@ -195,7 +176,6 @@ export class CreditFormComponent implements OnInit {
         (this.maxCredits[i] > 0) &&
         (this.minCredits[i] <= 6) &&
         (this.minCredits[i] > 0)
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
       ) {
         this.valid = true;
         // console.log('Form is valid');
@@ -244,11 +224,7 @@ export class CreditFormComponent implements OnInit {
       }
     }
   }
-<<<<<<< HEAD
-
   preview() {
     this.router.navigate(['/preview']);
   }
-=======
->>>>>>> d9b2aec434f55423d906c01e7f1765cd81a957a0
 }
