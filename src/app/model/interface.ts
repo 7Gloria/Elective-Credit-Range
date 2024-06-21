@@ -5,12 +5,13 @@
 }
 
 export interface StudentInfo {
+    basket:string
     studentName: string;
     rollNo: string;
     program: string;
     branch: string;
     semester: number;
-    creditRange: Range;
+    creditrange: Range;
     cgpa: number;
     atRisk: boolean;
     totalCredits: number;
